@@ -4,6 +4,7 @@ import { ThemeProvider } from "./src/contexts/themeContext";
 import { TaskInput } from "./src/components/taskInput";
 import { TaskItem } from "./src/components/taskItem";
 import { FilterTabs } from "./src/components/filterTabs";
+import { PriorityFilter } from "./src/components/priorityFilter";
 
 export default function App() {
   return (
@@ -13,6 +14,10 @@ export default function App() {
         <StatusBar style="auto" />
         <TaskInput onAddTask={() => {}} />
         <FilterTabs activeFilter="all" onFilterChange={() => {}}></FilterTabs>
+        <PriorityFilter
+          activePriority="all"
+          onPriorityChange={() => {}}
+        ></PriorityFilter>
         <TaskItem
           task={{
             id: "1",
