@@ -5,7 +5,7 @@ import React, {
   useContext,
   useState,
 } from "react";
-import { Colors, ThemeMode } from "@/src/types";
+import { Colors, ThemeMode } from "@/types";
 import { useColorScheme } from "react-native";
 
 const lightColors: Colors = {
