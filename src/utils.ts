@@ -46,3 +46,8 @@ export const getRelativeTime = (date: Date): string => {
     return `${months} ${months === 1 ? "month" : "months"} ago`;
   }
 };
+
+// Generate unique ID
+export const generateId = (): string => {
+  return `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+};

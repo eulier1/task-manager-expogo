@@ -40,23 +40,32 @@ export const TaskInput: React.FC<TaskInputProps> = ({ onAddTask }) => {
       </Text>
 
       {/* Text Input */}
-      <TextInput
-        style={[
-          styles.input,
-          {
-            backgroundColor: theme.colors.background,
-            borderColor: theme.colors.border,
-            color: theme.colors.text,
-          },
-        ]}
-        placeholder="Enter task..."
-        placeholderTextColor={theme.colors.textSecondary}
-        value={text}
-        onChangeText={setText}
-        onSubmitEditing={handleAddTask}
-        returnKeyType="done"
-      />
-
+      <View style={styles.textInputContainer}>
+        <TextInput
+          style={[
+            styles.input,
+            {
+              backgroundColor: theme.colors.background,
+              borderColor: theme.colors.border,
+              color: theme.colors.text,
+            },
+          ]}
+          placeholder="Enter task..."
+          placeholderTextColor={theme.colors.textSecondary}
+          value={text}
+          onChangeText={setText}
+          onSubmitEditing={handleAddTask}
+          returnKeyType="done"
+        />
+        {/* Add Button */}
+        <TouchableOpacity
+          style={[styles.addButton, { backgroundColor: theme.colors.primary }]}
+          onPress={handleAddTask}
+          activeOpacity={0.8}
+        >
+          <Text style={styles.addButtonText}>Add</Text>
+        </TouchableOpacity>
+      </View>
       {/* Priority Selector Row */}
       <View style={styles.priorityRow}>
         <Text
@@ -76,15 +85,6 @@ export const TaskInput: React.FC<TaskInputProps> = ({ onAddTask }) => {
             />
           ))}
         </View>
-
-        {/* Add Button */}
-        <TouchableOpacity
-          style={[styles.addButton, { backgroundColor: theme.colors.primary }]}
-          onPress={handleAddTask}
-          activeOpacity={0.8}
-        >
-          <Text style={styles.addButtonText}>Add</Text>
-        </TouchableOpacity>
       </View>
     </View>
   );
@@ -96,7 +96,11 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     marginHorizontal: 16,
     marginTop: 16,
-    width: "100%",
+  },
+  textInputContainer: {
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
   },
   label: {
     fontSize: 11,
@@ -110,6 +114,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
     fontSize: 14,
     borderWidth: 1,
+    width: "85%",
   },
   priorityRow: {
     flexDirection: "row",

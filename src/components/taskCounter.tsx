@@ -18,8 +18,23 @@ export const TaskCounter: React.FC<TaskCounterProps> = ({
       <Text style={[styles.label, { color: theme.colors.textSecondary }]}>
         TASKS
       </Text>
-      <View style={[styles.badge, { backgroundColor: theme.colors.error }]}>
-        <Text style={styles.badgeText}>
+      <View
+        style={[
+          styles.badge,
+          {
+            backgroundColor:
+              pendingCount > 0 ? theme.colors.warning : theme.colors.background,
+          },
+        ]}
+      >
+        <Text
+          style={[
+            styles.badgeText,
+            {
+              color: theme.colors.text,
+            },
+          ]}
+        >
           {pendingCount}/{totalCount} pending task
         </Text>
       </View>

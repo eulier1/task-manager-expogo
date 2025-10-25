@@ -62,7 +62,7 @@ export const ThemeToggle: React.FC = () => {
 
 const styles = StyleSheet.create({
   container: {
-    width: 40,
+    width: 45,
     height: 40,
     justifyContent: "center",
     alignItems: "center",

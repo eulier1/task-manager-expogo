@@ -1,6 +1,8 @@
 // Task Types
 export type Priority = "high" | "medium" | "low";
 
+export type TaskStatus = "pending" | "completed";
+
 export type FilterStatus = "all" | "completed" | "pending";
 
 export interface Task {
@@ -14,27 +16,27 @@ export interface Task {
 // Theme Types
 export type ThemeMode = "light" | "dark";
 
-export type Colors = {
+export interface Colors {
   background: string;
   surface: string;
   card: string;
   primary: string;
   text: string;
   textSecondary: string;
-  highPriority: string;
-  mediumPriority: string;
-  lowPriority: string;
-  statusBar: string;
   border: string;
   error: string;
   success: string;
   warning: string;
-};
+  highPriority: string;
+  mediumPriority: string;
+  lowPriority: string;
+  statusBar: string;
+}
 
-export type Theme = {
+export interface Theme {
   themeMode: ThemeMode;
   colors: Colors;
-};
+}
 
 // Component Props Types
 export interface TaskItemProps {
