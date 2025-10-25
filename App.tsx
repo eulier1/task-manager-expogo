@@ -2,6 +2,7 @@ import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
 import { PriorityChip } from "./src/components/priorityChip";
 import { ThemeProvider } from "./src/contexts/themeContext";
+import { TaskInput } from "./src/components/taskInput";
 
 export default function App() {
   return (
@@ -9,7 +10,7 @@ export default function App() {
       <View style={styles.container}>
         <Text> Task Manager </Text>
         <StatusBar style="auto" />
-        <PriorityChip priority="high" selected={true} onPress={() => {}} />
+        <TaskInput onAddTask={() => {}} />
       </View>
     </ThemeProvider>
   );
