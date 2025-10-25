@@ -1,6 +1,8 @@
 // Task Types
 export type Priority = "high" | "medium" | "low";
 
+export type FilterStatus = "all" | "completed" | "pending";
+
 export interface Task {
   id: string;
   text: string;
@@ -34,12 +36,6 @@ export type Theme = {
   colors: Colors;
 };
 
-export type PriorityChipProps = {
-  priority: Priority;
-  selected: boolean;
-  onPress: () => void;
-};
-
 // Component Props Types
 export interface TaskItemProps {
   task: Task;
@@ -50,4 +46,20 @@ export interface TaskItemProps {
 
 export interface TaskInputProps {
   onAddTask: (text: string, priority: Priority) => void;
+}
+
+export interface FilterTabsProps {
+  activeFilter: FilterStatus;
+  onFilterChange: (filter: FilterStatus) => void;
+}
+
+export interface PriorityFilterProps {
+  activePriority: Priority | "all";
+  onPriorityChange: (priority: Priority | "all") => void;
+}
+
+export interface PriorityChipProps {
+  priority: Priority;
+  selected: boolean;
+  onPress: () => void;
 }

@@ -5,7 +5,7 @@ import React, {
   useContext,
   useState,
 } from "react";
-import { Colors, ThemeMode } from "@/types";
+import { Colors, ThemeMode } from "@/src/types";
 import { useColorScheme } from "react-native";
 
 const lightColors: Colors = {
@@ -62,9 +62,7 @@ export const ThemeProvider = ({
   children,
 }: ThemeProviderProps): ReactElement => {
   const systemColorScheme = useColorScheme();
-  const [themeMode, setThemeModeState] = useState<ThemeMode>(
-    systemColorScheme === "dark" ? "dark" : "light"
-  );
+  const [themeMode, setThemeModeState] = useState<ThemeMode>("dark");
 
   const toggleTheme = () => {
     const newMode: ThemeMode = themeMode === "light" ? "dark" : "light";

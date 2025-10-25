@@ -90,8 +90,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     padding: 12,
     borderRadius: 8,
-    marginHorizontal: 16,
-    marginVertical: 6,
+
     minHeight: 70,
   },
   checkbox: {
