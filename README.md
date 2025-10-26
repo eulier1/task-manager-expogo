@@ -1,5 +1,9 @@
 # Task Manager
 
+## Task Manager Demo Explained
+
+[![Task Manager Demo Explained](https://img.youtube.com/vi/j4qMZcr0iz4/0.jpg)](https://www.youtube.com/watch?v=j4qMZcr0iz4-mc)
+
 ## Systematic UI Developement - Task Manager with React-Native
 
 [![Systematic UI Developement - Task Manager with React-Native](https://img.youtube.com/vi/G1yuNYyr-mc/0.jpg)](https://www.youtube.com/watch?v=G1yuNYyr-mc)
