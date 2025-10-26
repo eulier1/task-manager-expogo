@@ -4,4 +4,4 @@ export { TaskCounter } from "./taskCounter";
 export { FilterTabs } from "./filterTabs";
 export { PriorityFilter } from "./priorityFilter";
 export { PriorityChip } from "./priorityChip";
-export { ThemeToggle } from "./themeToggle";
+export { ThemedHeader } from "./themedHeader";

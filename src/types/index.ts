@@ -1,3 +1,5 @@
+import { ViewStyle } from "react-native";
+
 // Task Types
 export type Priority = "high" | "medium" | "low";
 
@@ -64,4 +66,21 @@ export interface PriorityChipProps {
   priority: Priority;
   selected: boolean;
   onPress: () => void;
+}
+
+export interface HeaderProps {
+  title: string;
+  rightIcon?: React.ReactNode;
+  onRightIconPress?: () => void;
+  leftIcon?: React.ReactNode;
+  onLeftIconPress?: () => void;
+  backgroundColor?: string;
+  titleColor?: string;
+  elevation?: number;
+  style?: ViewStyle;
+}
+
+export interface ThemedHeaderProps
+  extends Omit<HeaderProps, "rightIcon" | "onRightIconPress"> {
+  showThemeToggle?: boolean;
 }

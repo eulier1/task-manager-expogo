@@ -14,7 +14,7 @@ import {
   TaskCounter,
   FilterTabs,
   PriorityFilter,
-  ThemeToggle,
+  ThemedHeader,
 } from "./";
 import { Task, Priority, FilterStatus } from "../types";
 import { generateId } from "@/src/utils";
@@ -100,19 +100,11 @@ export const TaskManagerScreen: React.FC = () => {
     <View
       style={[styles.container, { backgroundColor: theme.colors.background }]}
     >
-      <StatusBar
-        barStyle={theme.themeMode === "dark" ? "light-content" : "dark-content"}
-        backgroundColor={theme.colors.primary}
-      />
-
       {/* Header */}
-      <View style={[styles.header, { backgroundColor: theme.colors.primary }]}>
-        <View style={styles.headerContent}>
-          <View style={styles.titleContainer}>
-            <View style={styles.title}>{/* Title will be centered */}</View>
-          </View>
-          <ThemeToggle />
-        </View>
+      <View
+        style={[styles.header, { backgroundColor: theme.colors.background }]}
+      >
+        <ThemedHeader title="Task Manager" />
       </View>
 
       {/* Task Input */}
@@ -171,11 +163,7 @@ const styles = StyleSheet.create({
     flex: 1,
     width: "100%",
   },
-  header: {
-    paddingTop: 12,
-    paddingBottom: 16,
-    paddingHorizontal: 16,
-  },
+  header: {},
   headerContent: {
     flexDirection: "row",
     alignItems: "center",
