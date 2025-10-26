@@ -3,9 +3,9 @@ import {
   View,
   FlatList,
   StyleSheet,
-  StatusBar,
   RefreshControl,
   Alert,
+  LayoutAnimation,
 } from "react-native";
 import { useTheme } from "@/src/contexts/themeContext";
 import {
@@ -72,10 +72,12 @@ export const TaskManagerScreen: React.FC = () => {
       completed: false,
       createdAt: new Date(),
     };
+    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
     setTasks([newTask, ...tasks]);
   };
 
   const handleToggleComplete = (id: string) => {
+    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
     setTasks(
       tasks.map((task) =>
         task.id === id ? { ...task, completed: !task.completed } : task
@@ -90,6 +92,7 @@ export const TaskManagerScreen: React.FC = () => {
         text: "Delete",
         style: "destructive",
         onPress: () => {
+          LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
           setTasks(tasks.filter((task) => task.id !== id));
         },
       },
