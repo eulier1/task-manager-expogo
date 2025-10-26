@@ -4,9 +4,12 @@ import React, {
   ReactNode,
   useContext,
   useState,
+  useEffect,
 } from "react";
 import { Colors, ThemeMode } from "@/src/types";
 import { useColorScheme } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { THEME_STORAGE_KEY } from "../constant";
 
 const lightColors: Colors = {
   background: "#F5F5F5",
@@ -25,7 +28,6 @@ const lightColors: Colors = {
   statusBar: "#FFFFFF",
 };
 
-// Dark Theme Colors
 const darkColors: Colors = {
   background: "#1A1A1A",
   surface: "#2A2A2A",
@@ -64,13 +66,39 @@ export const ThemeProvider = ({
   const systemColorScheme = useColorScheme();
   const [themeMode, setThemeModeState] = useState<ThemeMode>("dark");
 
+  // Load saved theme preference
+  useEffect(() => {
+    loadThemePreference();
+  }, []);
+
+  const loadThemePreference = async () => {
+    try {
+      const savedTheme = await AsyncStorage.getItem(THEME_STORAGE_KEY);
+      if (savedTheme && (savedTheme === "light" || savedTheme === "dark")) {
+        setThemeModeState(savedTheme);
+      }
+    } catch (error) {
+      console.error("Error loading theme preference:", error);
+    }
+  };
+
+  const saveThemePreference = async (mode: ThemeMode) => {
+    try {
+      await AsyncStorage.setItem(THEME_STORAGE_KEY, mode);
+    } catch (error) {
+      console.error("Error saving theme preference:", error);
+    }
+  };
+
   const toggleTheme = () => {
     const newMode: ThemeMode = themeMode === "light" ? "dark" : "light";
     setThemeModeState(newMode);
+    saveThemePreference(newMode);
   };
 
   const setThemeMode = (mode: ThemeMode) => {
     setThemeModeState(mode);
+    saveThemePreference(mode);
   };
 
   const theme = {

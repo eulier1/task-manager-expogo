@@ -19,7 +19,8 @@ import {
 import { Task, Priority, FilterStatus } from "../types";
 import { generateId } from "@/src/utils";
 
-const TASKS_STORAGE_KEY = "@task_manager_tasks";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { TASKS_STORAGE_KEY } from "../constant";
 
 export const TaskManagerScreen: React.FC = () => {
   const { theme } = useTheme();
@@ -28,7 +29,41 @@ export const TaskManagerScreen: React.FC = () => {
   const [filterPriority, setFilterPriority] = useState<Priority | "all">("all");
   const [refreshing, setRefreshing] = useState(false);
 
-  // Add new task
+  useEffect(() => {
+    loadTasks();
+  }, []);
+
+  useEffect(() => {
+    saveTasks();
+  }, [tasks]);
+
+  const loadTasks = async () => {
+    try {
+      const storedTasks = await AsyncStorage.getItem(TASKS_STORAGE_KEY);
+      if (storedTasks) {
+        const parsedTasks = JSON.parse(storedTasks);
+        // Convert date strings back to Date objects
+        const tasksWithDates = parsedTasks.map((task: any) => ({
+          ...task,
+          createdAt: new Date(task.createdAt),
+        }));
+        setTasks(tasksWithDates);
+      }
+    } catch (error) {
+      console.error("Error loading tasks:", error);
+      Alert.alert("Error", "Failed to load tasks");
+    }
+  };
+
+  const saveTasks = async () => {
+    try {
+      await AsyncStorage.setItem(TASKS_STORAGE_KEY, JSON.stringify(tasks));
+    } catch (error) {
+      console.error("Error saving tasks:", error);
+      Alert.alert("Error", "Failed to save tasks");
+    }
+  };
+
   const handleAddTask = (text: string, priority: Priority) => {
     const newTask: Task = {
       id: generateId(),
@@ -40,7 +75,6 @@ export const TaskManagerScreen: React.FC = () => {
     setTasks([newTask, ...tasks]);
   };
 
-  // Toggle task completion
   const handleToggleComplete = (id: string) => {
     setTasks(
       tasks.map((task) =>
@@ -49,7 +83,6 @@ export const TaskManagerScreen: React.FC = () => {
     );
   };
 
-  // Delete task
   const handleDeleteTask = (id: string) => {
     Alert.alert("Delete Task", "Are you sure you want to delete this task?", [
       { text: "Cancel", style: "cancel" },
@@ -66,6 +99,7 @@ export const TaskManagerScreen: React.FC = () => {
   // Pull to refresh
   const onRefresh = async () => {
     setRefreshing(true);
+    await loadTasks();
     setRefreshing(false);
   };
 
