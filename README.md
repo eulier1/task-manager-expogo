@@ -102,6 +102,20 @@ rn-shopping-list/
 - Animations on list CRUD ops
 - Edit existing tasks (not implemented)
 
+## Brief explanation of your state management choice
+
+This app is using Context API over Zustand was for the following reasons :
+
+- Small **scale** of states (theme in the app) is small
+- Few global states (theme)
+- Favor react-native hooks over community-based to reduce external deps and increase maintainability
+
+When **NOT** to use or migrate to zustand or any global state management?
+
+- Multiple states (for example, user, analytics, business-domaind data, theme) and you need to define multiple operations on those states (CRUD, business ops)
+- Large object states, zustand use Immer to draft and update a new deeply nested state
+- Caching and data fetching to keep consistency between client & sever state (there are other alternatives react-query, swc)
+
 ## Assumptions
 
 1. No routing required, therefore no App folder
